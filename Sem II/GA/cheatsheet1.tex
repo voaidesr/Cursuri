@@ -1,0 +1,162 @@
+\documentclass[10pt]{extarticle}
+\usepackage[margin=0.25in]{geometry} % narrow margins for space
+\usepackage{multicol}               % for multiple columns
+\usepackage{parskip}               % no paragraph indentation
+\usepackage{enumitem}              % compact lists
+\usepackage{amsmath,amssymb}       % math symbols
+\usepackage{graphicx}              % for images if needed
+\usepackage{fancyhdr}              % optional header/footer
+\usepackage{titlesec}              % compact sectioning
+\usepackage{hyperref}              % for links
+
+\pagestyle{empty} % removes page number
+
+% Optional: tighter section spacing
+\titlespacing*{\section}{0pt}{0.5ex plus 0.2ex minus .2ex}{0.3ex}
+\titlespacing*{\subsection}{0pt}{0.3ex}{0.2ex}
+
+\setlength{\columnsep}{0.15in} % space between columns
+
+\begin{document}
+\small % smaller text to fit more
+\begin{multicols*}{2}
+
+\section*{Matrici}
+\begin{itemize}[leftmargin=*]
+  \item $\det(A) = \sum_{\sigma \in S_n} \epsilon_{\sigma}a_{1\sigma(1)}a_{2\sigma(2)}...a_{n\sigma(n )}$
+  \item $\operatorname{Tr}(A + B) = \operatorname{Tr}(A) + \operatorname{Tr}(B)$, $\operatorname{Tr}(AB) = \operatorname{Tr}(BA)$
+  \item $\operatorname{Tr}(\alpha A) = \alpha\operatorname{Tr}(A)$
+  \item $\operatorname{det}(A^{-1}) = \frac{1}{\operatorname{det}(A)}$, $\operatorname{det}(A^*) = \operatorname{det}(A)^{n-1}$
+  \item $
+  V(a_1, \dots, a_n) = 
+  \begin{vmatrix}
+  1 & a_1 & a_1^2 & \cdots & a_1^{n-1} \\
+  1 & a_2 & a_2^2 & \cdots & a_2^{n-1} \\
+  \vdots & \vdots & \vdots & \ddots & \vdots \\
+  1 & a_n & a_n^2 & \cdots & a_n^{n-1}
+  \end{vmatrix}
+  $
+  \item $
+  V(a_1, \dots, a_n) = \prod_{1 \le i < j \le n}(a_j - a_i)
+  $
+  \item $A = A^T \Leftrightarrow A$ \textbf{simetrică}
+  \item $A = -A^T \Leftrightarrow A$ \textbf{antisimetrică} $\Rightarrow a_{ii} = 0, i = \overline{1, n}$
+\end{itemize}
+
+\section*{Polinom Caracteristic}
+\begin{itemize}[leftmargin=*]
+  \item $p_A(X) = \det(A - X I_n)$
+  \item $p_A(X) = \det(A - X I_n) = (-1)^n (X^n - \sigma_1 X^{n-1} + \cdots + (-1)^n\sigma_n)$
+  \item $\sigma_1 = a_{11} + a_{22} + \cdots + a_{nn} = \operatorname{Tr}(A)$
+  \item $\sigma_2 = \sum_{1 \le i < j \le n} \begin{vmatrix} a_{ii} & a_{ij} \\ a_{ji} & a_{jj} \end{vmatrix}$
+  \item $\sigma_3 = \sum_{1 \le i < j < k \le n} \begin{vmatrix}
+    a_{ii} & a_{ij} & a_{ik} \\
+    a_{ji} & a_{jj} & a_{jk} \\
+    a_{ki} & a_{kj} & a_{kk}
+    \end{vmatrix}$, samd
+  \item $\sigma_n = \operatorname{det}(A)$
+  \item Aplicatii: calcul $A^{-1}$, ecuatii binome in $M_2(\mathbb{C})$, \textbf{calcul $A^n$:}
+  \item $A^n = x_nA + y_nI_2, A \in M_2(\mathbb{C})$
+  \item Avem recurenta: $x_n = \sigma_1 x_{n-1} + \sigma_2 x_{n-2}, y_n = -\sigma_2 x_n$
+\end{itemize}
+
+\section*{Sisteme liniare}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Teorema Kronecker-Capelli}: sistem compatibil $\Leftrightarrow \operatorname{rg}(A) = \operatorname{rg}(A|B)$
+  \item \textbf{Rouché}: sistem compatibil  $\Leftrightarrow \Delta_c = 0$
+  \item \textbf{inv. Gauss-Jordan}: $(A\,|\,I_n) \sim (I_n\,|\,A^{-1})$
+  \item \textbf{Algoritm Gauss-Jordan}: $(A\,|\,B) \sim (I_n\,|\,X)$
+\end{itemize}
+
+\section*{Spații vectoriale}
+\begin{itemize}[leftmargin=*]
+  \item $(V, +, \cdot)_K$ este spațiu vectorial dacă:
+  \item $(V, +)$ este grup abelian
+  \item $a(bx) = (ab)x$
+  \item $a(x + y) = ax + ay$
+  \item $(a + b)x = ax + bx$
+  \item $1_K \cdot x = x$
+  \item $V' \subseteq V$ \textbf{subspațiu} $\Leftrightarrow ax + by \in V',\ \forall x, y \in V',\ \forall a, b \in K$
+  \item \textbf{Spatiul generat de S:}
+  \item $x \in \langle S \rangle \Leftrightarrow 
+  \exists x_1, \dots, x_n \in S,\ \exists a_1, \dots, a_n \in K$ astfel încât $x = a_1x_1 + \cdots + a_nx_n \in S$
+  \item $S$ este \textbf{SLI} $\Leftrightarrow \forall a_1x_1 + \cdots + a_nx_n = 0,\ x_i \in S \Rightarrow a_1 = \cdots = a_n = 0$
+  \item $S$ este \textbf{SLD} $\Leftrightarrow \exists a_1x_1 + \cdots + a_nx_n = 0,\ x_i \in S,\ (a_i \ne 0)$
+  \item $S$ este \textbf{SG} $\Leftrightarrow \langle S \rangle = V$
+  \item $S$ este \textbf{Baza} $\Leftrightarrow S$ este SLI și $S$ este SG
+  \item $\dim V = n \Leftrightarrow$ orice bază a lui $V$ are $n$ vectori
+  \item Orice submultime a unui SLI e SLI
+  \item Orice supramultime a unui SLD e SLD
+  \item Orice supramultime a unui SG e SG
+  \item \textbf{Teorema schimbului:} Dacă $\{x_1, \dots, x_n\}$ este SG și $\{y_1, \dots, y_n\}$ este SLI, atunci $\{y_1, \dots, y_n\}$ este SG
+\end{itemize}
+
+\section*{Repere}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Reper} = bază ordonată $\{e_1, \dots, e_n\}$
+  \item \textbf{Trecere între baze}: $e_i' = \sum_{j=1}^n a_{ji} e_j$
+  \item \textbf{Trecere coordonate}: $x = \sum_{i=1}^n x_i' e_i' = \sum_{i=1}^n x_i e_i \Rightarrow [x]_{\mathcal{B}} = A [x]_{\mathcal{B}'}$
+  \item \begin{itemize}[leftmargin=*]
+    \item Dacă $\dim_K V = n$ și $B = \{e_1, \dots, e_n\}$, atunci sunt echivalente:
+    \begin{itemize}[leftmargin=1.5em]
+      \item $B$ este bază
+      \item $B$ este \textbf{SLI}
+      \item $B$ este \textbf{SG}
+    \end{itemize}
+    \item \textbf{Orientare}: dacă $A$ este matricea de trecere de la $B$ la $B'$, atunci:
+    \begin{itemize}[leftmargin=1.5em]
+      \item $\det A > 0$ $\Rightarrow$ la fel orientate
+      \item $\det A < 0$ $\Rightarrow$ opus orientate
+    \end{itemize}
+    \item \textbf{Criteriu de independență}: $\{v_1, \dots, v_k\}$ este \textbf{SLI} $\Leftrightarrow \operatorname{rg}(v_1, \dots, v_k) = maxim$
+    \item $V_1 + V_2 = \langle V_1 \cup V_2 \rangle$ = cel mai mic subspațiu care conține pe $V_1$ și $V_2$
+    \item \textbf{Teorema Grassmann}: $\dim(V_1 + V_2) = \dim V_1 + \dim V_2 - \dim(V_1 \cap V_2)$
+    \item $V_1 \oplus V_2$ (suma directă) $\Leftrightarrow V_1 + V_2$ și $V_1 \cap V_2 = \{0\}$
+    \item $S(A) = \{ X \in V \mid AX = 0 \}$ este subspațiu vectorial
+    \item $\dim S(A) = \dim V - \operatorname{rg}(A)$
+    \item Dacă $V' \subseteq V$ subspațiu, atunci coordonatele se pot scrie ca SLO
+    \item Dacă $V' \subseteq V$ și $\dim V' = \dim V$, atunci $V' = V$
+  \end{itemize}
+
+  \section*{Aplicații liniare}
+\begin{itemize}[leftmargin=*]
+  \item $f : V_1 \to V_2$ este \textbf{aplicație liniară} $\Leftrightarrow f(ax + by) = af(x) + bf(y)$
+  \item Dacă $V' \subseteq V_1$ subspațiu, atunci $f(V')$ este subspațiu din $V_2$
+  \item $\ker f = \{x \in V_1 \mid f(x) = 0\}$
+  \item $\operatorname{Im} f = \{f(x) \mid x \in V_1\}$
+  \item $\ker f$ și $\operatorname{Im} f$ sunt subspații vectoriale
+  \item $f$ \textbf{injectivă} $\Leftrightarrow \ker f = \{0\}$
+  \item $f$ \textbf{surjectivă} $\Leftrightarrow \dim(\operatorname{Im} f) = \dim V_2$
+  \item \textbf{Teorema dimensiunii}: $\dim V_1 = \dim \ker f + \dim \operatorname{Im} f$
+  \item $f$ injectivă $\Rightarrow \dim V_1 = \dim \operatorname{Im} f$
+  \item $f$ surjectivă $\Rightarrow \dim V_1 = \dim \ker f + \dim V_2$
+  \item $f$ bijectivă $\Rightarrow \dim V_1 = \dim V_2$
+\end{itemize}
+
+\section*{Matricea asociata aplicației liniare}
+\begin{itemize}[leftmargin=*]
+  \item Dacă $f : V_1 \to V_2$, baze $R_1$, $R_2$, atunci $[f]_{R_1, R_2} = A$ este matricea asociată lui $f$
+  \item \textbf{Caracterizare}: $f$ este liniară $\Leftrightarrow \exists A \in M_{m \times n}(K)$ astfel încât $[f(x)]_{R_2} = A [x]_{R_1}$
+  \item Dacă $C$, $D$ sunt matrici de trecere pentru baze noi, atunci $A' = D^{-1} A C$
+  \item $f$ este injectivă $\Leftrightarrow \operatorname{rg} A = \dim V_1$
+  \item $f$ este surjectivă $\Leftrightarrow \operatorname{rg} A = \dim V_2$
+  \item $f$ este bijectivă $\Leftrightarrow A \in \operatorname{GL}(n, K)$
+  \item $V^* = \{\varphi : V \to K\ |\ \varphi$ liniară$\}$ este \textbf{spațiul dual}
+  \item $V \cong V^*$ (spații izomorfe)
+  
+  \item Dacă $V = V_1 \oplus V_2$, atunci există proiecția $p : V \to V_1$ de-a lungul lui $V_2$
+  \item Dacă $v = v_1 + v_2$ cu $v_1 \in V_1$, $v_2 \in V_2$, atunci $p(v) = v_1$
+  \item $p \circ p = p$ (proiecție)
+  \item Simetria asociată: $s = 2p - \operatorname{id}_V$
+  \item $s \circ s = \operatorname{id}_V$ (simetrie)
+\end{itemize}
+
+
+  
+\end{itemize}
+
+
+
+
+\end{multicols*}
+\end{document}
